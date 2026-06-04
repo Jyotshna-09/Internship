@@ -107,6 +107,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           }
         } else {
           setProfile(null);
+          localStorage.removeItem("moonlight_garden_v1");
+          window.dispatchEvent(new Event("moonlight:update"));
         }
         setLoading(false);
       }
@@ -120,6 +122,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signOut = async () => {
     if (isGuest) {
       localStorage.removeItem("moonlight_guest_name");
+      localStorage.removeItem("moonlight_garden_v1");
       setIsGuest(false);
       setProfile(null);
       // Dispatch update to trigger game state reset
@@ -127,6 +130,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return;
     }
     if (hasSupabaseConfig) {
+      localStorage.removeItem("moonlight_garden_v1");
       await supabase.auth.signOut();
     }
   };

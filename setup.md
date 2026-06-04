@@ -72,5 +72,5 @@ To deploy this application to Vercel (supporting both static assets and SSR serv
    - `VITE_SUPABASE_URL` = (your Supabase URL)
    - `VITE_SUPABASE_ANON_KEY` = (your Supabase Anon Key)
 5. Set the **Build Command** to: `npm run build`
-6. Set the **Output Directory** to: `.output` (or let Vercel auto-detect default)
+6. Set the **Output Directory** to **DEFAULT** (do **NOT** override this setting; leave the override toggle off/disabled). Nitro compiles the serverless deployment inside `.vercel/output`, and Vercel will automatically detect and process it if the output directory is left at its default value.
 7. Click **Deploy**. Vercel will build the frontend assets and automatically deploy the server routes.
