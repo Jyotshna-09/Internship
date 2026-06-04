@@ -1,0 +1,160 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* The Mystery of the Moonlight Garden — Design System
+   Deep Moonlit Indigo: midnight sky, moon gold, firefly cyan, magic violet. */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-moon: var(--moon);
+  --color-firefly: var(--firefly);
+  --color-magic: var(--magic);
+  --color-petal: var(--petal);
+
+  --font-display: "Fraunces", "Cormorant Garamond", serif;
+  --font-body: "Plus Jakarta Sans", "Inter", sans-serif;
+
+  --shadow-glow-moon: 0 0 60px -10px color-mix(in oklab, var(--moon) 70%, transparent);
+  --shadow-glow-firefly: 0 0 40px -8px color-mix(in oklab, var(--firefly) 60%, transparent);
+  --shadow-glow-magic: 0 0 50px -10px color-mix(in oklab, var(--magic) 60%, transparent);
+
+  --gradient-night: linear-gradient(160deg, #070926 0%, #0f1240 40%, #1a1654 80%, #2a1668 100%);
+  --gradient-moon: linear-gradient(135deg, var(--moon), color-mix(in oklab, var(--moon) 60%, white 40%));
+  --gradient-magic: linear-gradient(135deg, var(--magic), var(--firefly));
+}
+
+:root {
+  --radius: 1rem;
+
+  --background: oklch(0.18 0.07 280);
+  --foreground: oklch(0.97 0.02 90);
+
+  --card: oklch(0.24 0.08 280 / 0.55);
+  --card-foreground: oklch(0.97 0.02 90);
+
+  --popover: oklch(0.22 0.08 280);
+  --popover-foreground: oklch(0.97 0.02 90);
+
+  --primary: oklch(0.72 0.18 295);
+  --primary-foreground: oklch(0.15 0.05 280);
+
+  --secondary: oklch(0.32 0.08 280);
+  --secondary-foreground: oklch(0.97 0.02 90);
+
+  --muted: oklch(0.28 0.05 280);
+  --muted-foreground: oklch(0.78 0.04 280);
+
+  --accent: oklch(0.85 0.16 90);
+  --accent-foreground: oklch(0.15 0.05 280);
+
+  --destructive: oklch(0.65 0.22 25);
+  --destructive-foreground: oklch(0.98 0.01 90);
+
+  --border: oklch(0.9 0.05 280 / 0.15);
+  --input: oklch(0.9 0.05 280 / 0.2);
+  --ring: oklch(0.72 0.18 295);
+
+  --moon: oklch(0.9 0.14 90);
+  --firefly: oklch(0.88 0.16 195);
+  --magic: oklch(0.7 0.2 300);
+  --petal: oklch(0.78 0.14 350);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html, body {
+    background: var(--gradient-night);
+    background-attachment: fixed;
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    min-height: 100vh;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+}
+
+@utility glass {
+  background: color-mix(in oklab, var(--card) 70%, transparent);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid color-mix(in oklab, white 12%, transparent);
+  box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.5);
+}
+
+@utility text-glow-moon {
+  text-shadow: 0 0 24px color-mix(in oklab, var(--moon) 60%, transparent);
+}
+
+@utility text-glow-magic {
+  text-shadow: 0 0 24px color-mix(in oklab, var(--magic) 70%, transparent);
+}
+
+@utility btn-magic {
+  background: var(--gradient-magic);
+  color: white;
+  padding: 0.85rem 1.75rem;
+  border-radius: 999px;
+  font-weight: 600;
+  box-shadow: var(--shadow-glow-magic);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+@utility btn-moon {
+  background: var(--gradient-moon);
+  color: oklch(0.15 0.05 280);
+  padding: 0.85rem 1.75rem;
+  border-radius: 999px;
+  font-weight: 700;
+  box-shadow: var(--shadow-glow-moon);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-20px) translateX(8px); }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.4); }
+}
+@keyframes pulse-glow {
+  0%, 100% { filter: drop-shadow(0 0 8px currentColor); }
+  50% { filter: drop-shadow(0 0 24px currentColor); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-float-slow { animation: float-slow 7s ease-in-out infinite; }
+.animate-twinkle { animation: twinkle 3s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 2.5s ease-in-out infinite; }
+</content>
+</invoke>
